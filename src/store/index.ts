@@ -1,6 +1,17 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import createSagaMiddleware from "redux-saga";
 import reducers from "./reducers";
+import rootSaga from "./sagas";
+import { UserReducerStateType } from "./reducers/user-reducer";
 
-const store = createStore(reducers);
+export type AppState = {
+  user: UserReducerStateType;
+};
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(rootSaga);
 
 export default store;

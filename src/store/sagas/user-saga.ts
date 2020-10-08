@@ -1,5 +1,4 @@
 import { call, put } from "redux-saga/effects";
-import { SagaActions } from ".";
 import { getUser, postUser } from "../../services/user";
 import { setUser } from "../actions/user-actions";
 
